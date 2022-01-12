@@ -14,7 +14,6 @@ class App extends Component {
     this.setState((prevState) => ({
       contacts: prevState.contacts.filter((e) => e.id !== id),
     }));
-    localStorage.setItem('a', '1')
   };
 
   addContact = (data) => {
@@ -39,7 +38,6 @@ class App extends Component {
 
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contacts'))
-    console.log(contacts);
 
     if (contacts) {
       this.setState({contacts: contacts})
@@ -48,13 +46,11 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      console.log('contacts did update');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
     }
   }
 
   render() {
-    console.log(this.visibleContacts());
     return (
       <div className="App">
         <Form title={"Phonebook"} addContact={this.addContact} />
